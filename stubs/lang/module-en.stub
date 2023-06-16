@@ -1,0 +1,4 @@
+<?php
+return [
+    'module_name' => '__MODULE_NAME__',
+];

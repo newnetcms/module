@@ -1,0 +1,34 @@
+<?php
+return [
+    'model_name' => '__MODEL_NAME__',
+
+    'name'        => 'Tiêu đề',
+    'description' => 'Mô tả',
+    'content'     => 'Nội dung',
+    'is_active'   => 'Kích hoạt',
+    'created_at'  => 'Ngày tạo',
+
+    'index' => [
+        'page_title'    => '__MODEL_NAME__',
+        'page_subtitle' => '__MODEL_NAME__',
+        'breadcrumb'    => '__MODEL_NAME__',
+    ],
+
+    'create' => [
+        'page_title'    => 'Thêm __MODEL_NAME__',
+        'page_subtitle' => 'Thêm __MODEL_NAME__',
+        'breadcrumb'    => 'Thêm',
+    ],
+
+    'edit' => [
+        'page_title'    => 'Sửa __MODEL_NAME__',
+        'page_subtitle' => 'Sửa __MODEL_NAME__',
+        'breadcrumb'    => 'Sửa',
+    ],
+
+    'notification' => [
+        'created' => 'Tạo __MODEL_NAME__ thành công!',
+        'updated' => 'Cập nhật __MODEL_NAME__ thành công!',
+        'deleted' => 'Xoá __MODEL_NAME__ thành công!',
+    ],
+];

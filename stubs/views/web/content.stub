@@ -1,0 +1,6 @@
+<div class="container">
+    <h1>{{ $item->name }}</h1>
+    <div class="__MODEL_SLUG_NAME__-content">
+        {!! $item->content !!}
+    </div>
+</div>

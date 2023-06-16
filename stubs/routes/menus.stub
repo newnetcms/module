@@ -1,0 +1,10 @@
+<?php
+
+use Modules\__MODULE_CLASS_NAME__\__MODULE_CLASS_NAME__AdminMenuKey;
+
+AdminMenu::addItem(__('__MODULE_NAMESPACE__::module.module_name'), [
+    'id' => __MODULE_CLASS_NAME__AdminMenuKey::__MODULE_MENU_KEY__,
+    'icon' => 'fas fa-list',
+    'order' => 1000,
+]);
+// ADD_ADMIN_MENU_HERE //

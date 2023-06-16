@@ -1,0 +1,19 @@
+{
+    "name": "newnetcms/module",
+    "description": "Module Manager",
+    "autoload": {
+        "psr-4": {
+            "Newnet\\Module\\": "/src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Newnet\\Module\\ModuleServiceProvider"
+            ],
+            "aliases": {
+                "Module": "Newnet\\Module\\Facades\\Module"
+            }
+        }
+    }
+}

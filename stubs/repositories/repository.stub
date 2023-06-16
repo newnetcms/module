@@ -1,0 +1,14 @@
+<?php
+
+namespace Modules\__MODULE_CLASS_NAME__\Repositories;
+
+use Modules\__MODULE_CLASS_NAME__\Models\__MODEL_CLASS_NAME__;
+use Newnet\Core\Repositories\BaseRepository;
+
+class __MODEL_CLASS_NAME__Repository extends BaseRepository
+{
+    public function __construct(__MODEL_CLASS_NAME__ $model)
+    {
+        parent::__construct($model);
+    }
+}

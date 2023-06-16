@@ -1,0 +1,79 @@
+<?php
+
+namespace Modules\__MODULE_CLASS_NAME__\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Session;
+use Modules\__MODULE_CLASS_NAME__\__MODULE_CLASS_NAME__AdminMenuKey;
+use Modules\__MODULE_CLASS_NAME__\Http\Requests\__MODEL_CLASS_NAME__Request;
+use Modules\__MODULE_CLASS_NAME__\Repositories\__MODEL_CLASS_NAME__Repository;
+use Newnet\AdminUi\Facades\AdminMenu;
+
+class __MODEL_CLASS_NAME__Controller extends Controller
+{
+    protected __MODEL_CLASS_NAME__Repository $__MODEL_VAR_NAME__Repository;
+
+    public function __construct(__MODEL_CLASS_NAME__Repository $__MODEL_VAR_NAME__Repository)
+    {
+        $this->__MODEL_VAR_NAME__Repository = $__MODEL_VAR_NAME__Repository;
+    }
+
+    public function index(Request $request)
+    {
+        $items = $this->__MODEL_VAR_NAME__Repository->paginate($request->input('max', 20));
+
+        return view('__MODULE_NAMESPACE__::admin.__MODEL_SLUG_NAME__.index', compact('items'));
+    }
+
+    public function create()
+    {
+        AdminMenu::activeMenu(__MODULE_CLASS_NAME__AdminMenuKey::__MODEL_MENU_KEY__);
+
+        return view('__MODULE_NAMESPACE__::admin.__MODEL_SLUG_NAME__.create');
+    }
+
+    public function store(__MODEL_CLASS_NAME__Request $request)
+    {
+        $item = $this->__MODEL_VAR_NAME__Repository->create($request->all());
+
+        return redirect()
+            ->route('__MODULE_NAMESPACE__.admin.__MODEL_SLUG_NAME__.edit', [
+                '__MODEL_KEY__' => $item,
+                'edit_locale' => $request->input('edit_locale'),
+            ])
+            ->with('success', __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.notification.created'));
+    }
+
+    public function edit($id)
+    {
+        AdminMenu::activeMenu(__MODULE_CLASS_NAME__AdminMenuKey::__MODEL_MENU_KEY__);
+
+        $item = $this->__MODEL_VAR_NAME__Repository->find($id);
+
+        return view('__MODULE_NAMESPACE__::admin.__MODEL_SLUG_NAME__.edit', compact('item'));
+    }
+
+    public function update(__MODEL_CLASS_NAME__Request $request, $id)
+    {
+        $this->__MODEL_VAR_NAME__Repository->updateById($request->all(), $id);
+
+        return back()->with('success', __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.notification.updated'));
+    }
+
+    public function destroy($id, Request $request)
+    {
+        $this->__MODEL_VAR_NAME__Repository->delete($id);
+
+        if ($request->wantsJson()) {
+            Session::flash('success', __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.notification.deleted'));
+            return response()->json([
+                'success' => true,
+            ]);
+        }
+
+        return redirect()
+            ->route('__MODULE_NAMESPACE__.admin.__MODEL_SLUG_NAME__.index')
+            ->with('success', __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.notification.deleted'));
+    }
+}

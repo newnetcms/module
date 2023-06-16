@@ -1,0 +1,8 @@
+<?php
+
+Route::prefix('__MODULE_SLUG_NAME__')
+    ->name('__MODULE_NAMESPACE__.admin.')
+    ->middleware('admin.acl')
+    ->group(function () {
+        // ADD_ROUTE_MODEL_HERE //
+    });

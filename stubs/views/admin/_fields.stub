@@ -1,0 +1,13 @@
+@translatableAlert
+
+<div class="row">
+    <div class="col-12 col-md-9">
+        @input(['name' => 'name', 'label' => __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.name')])
+        @textarea(['name' => 'description', 'label' => __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.description')])
+        @editor(['name' => 'content', 'label' => __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.content')])
+    </div>
+    <div class="col-12 col-md-3">
+        @translatable
+        @checkbox(['name' => 'is_active', 'label' => __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.is_active'), 'default' => true])
+    </div>
+</div>

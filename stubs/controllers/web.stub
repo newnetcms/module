@@ -1,0 +1,16 @@
+<?php
+
+namespace Modules\__MODULE_CLASS_NAME__\Http\Controllers\Web;
+
+use Illuminate\Routing\Controller;
+use Modules\__MODULE_CLASS_NAME__\Models\__MODEL_CLASS_NAME__;
+
+class __MODEL_CLASS_NAME__Controller extends Controller
+{
+    public function detail($id)
+    {
+        $item = __MODEL_CLASS_NAME__::find($id);
+
+        return view('__MODULE_NAMESPACE__::web.__MODEL_SLUG_NAME__.detail', compact('item'));
+    }
+}

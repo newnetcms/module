@@ -1,0 +1,10 @@
+<?php
+
+namespace Modules\__MODULE_CLASS_NAME__;
+
+class __MODULE_CLASS_NAME__AdminMenuKey
+{
+    const __MODULE_MENU_KEY__ = '__MODULE_KEY__';
+
+    // ADD_ADMIN_MENU_KEY_HERE //
+}

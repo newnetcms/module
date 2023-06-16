@@ -1,0 +1,13 @@
+@extends('master')
+
+@section('meta_title', object_get($item, 'seometa.title') ?: $item->$item)
+
+@section('meta')
+    @seometa(['item' => $item])
+@stop
+
+@section('body-class', '__MODEL_SLUG_NAME__-detail')
+
+@section('content')
+    @includeFirst(['__MODULE_NAMESPACE__::web.__MODEL_SLUG_NAME__.content'])
+@stop

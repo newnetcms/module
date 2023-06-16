@@ -1,0 +1,16 @@
+{
+    "name": "module/__MODULE_SLUG_NAME__",
+    "description": "__MODULE_NAME__",
+    "autoload": {
+        "psr-4": {
+            "Modules\\__MODULE_CLASS_NAME__\\": "/src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\__MODULE_CLASS_NAME__\\__MODULE_CLASS_NAME__ServiceProvider"
+            ]
+        }
+    }
+}

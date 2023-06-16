@@ -1,0 +1,37 @@
+<?php
+
+namespace Modules\__MODULE_CLASS_NAME__\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Newnet\Seo\Traits\SeoableTrait;
+use Newnet\Core\Support\Traits\TranslatableTrait;
+
+class __MODEL_CLASS_NAME__ extends Model
+{
+    use TranslatableTrait;
+    use SeoableTrait;
+
+    protected $table = '__MODULE_NAMESPACE______MODEL_KEY__s';
+
+    protected $fillable = [
+        'name',
+        'description',
+        'content',
+        'is_active',
+    ];
+
+    public $translatable = [
+        'name',
+        'description',
+        'content',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
+    public function getUrl()
+    {
+        return route('__MODULE_NAMESPACE__.web.__MODEL_SLUG_NAME__.detail', $this->id);
+    }
+}

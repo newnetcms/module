@@ -1,0 +1,10 @@
+<?php
+
+namespace Modules\__MODULE_CLASS_NAME__;
+
+use Newnet\Module\Support\BaseModuleServiceProvider;
+
+class __MODULE_CLASS_NAME__ServiceProvider extends BaseModuleServiceProvider
+{
+
+}

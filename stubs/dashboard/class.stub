@@ -1,0 +1,18 @@
+<?php
+
+namespace __NAMESPACE__;
+
+use Newnet\Dashboard\DashboardItem;
+
+class __CLASS_NAME__ extends DashboardItem
+{
+    public function name()
+    {
+        return __('__MODULE_NAME__::dashboard.__DASHBOARD_NAME__.name');
+    }
+
+    public function toHtml()
+    {
+        return view('__MODULE_NAME__::dashboards.__DASHBOARD_NAME__');
+    }
+}

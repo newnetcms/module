@@ -1,0 +1,34 @@
+<?php
+return [
+    'model_name' => '__MODEL_NAME__',
+
+    'name'        => 'Name',
+    'description' => 'Content',
+    'content'     => 'Content',
+    'is_active'   => 'Is Activated',
+    'created_at'  => 'Created At',
+
+    'index' => [
+        'page_title'    => '__MODEL_NAME__',
+        'page_subtitle' => '__MODEL_NAME__',
+        'breadcrumb'    => '__MODEL_NAME__',
+    ],
+
+    'create' => [
+        'page_title'    => 'Add __MODEL_NAME__',
+        'page_subtitle' => 'Add __MODEL_NAME__',
+        'breadcrumb'    => 'Add',
+    ],
+
+    'edit' => [
+        'page_title'    => 'Edit __MODEL_NAME__',
+        'page_subtitle' => 'Edit __MODEL_NAME__',
+        'breadcrumb'    => 'Edit',
+    ],
+
+    'notification' => [
+        'created' => '__MODEL_NAME__ successfully created!',
+        'updated' => '__MODEL_NAME__ successfully updated!',
+        'deleted' => '__MODEL_NAME__ successfully deleted!',
+    ],
+];
