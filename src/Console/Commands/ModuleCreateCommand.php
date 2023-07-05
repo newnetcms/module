@@ -5,15 +5,14 @@ namespace Newnet\Module\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Newnet\Module\Enums\ActiveModule;
 use Newnet\Module\Enums\DesignPattern;
 use Newnet\Module\Enums\EnableMultipleLanguage;
 use Newnet\Module\Enums\EnableSeo;
 use Newnet\Module\Generators\ModuleGenerator;
 
-class CreateModuleCommand extends Command
+class ModuleCreateCommand extends Command
 {
-    protected $signature = 'cms:create-module {name?} {models?}';
+    protected $signature = 'cms:module.create {name?} {models?} {--dev}';
 
     protected $description = 'Create a new Module';
 
@@ -24,7 +23,7 @@ class CreateModuleCommand extends Command
         $designPattern = $this->askForDesignPattern();
         $enableSeo = $this->askForEnableSeo();
         $enableMultipleLanguage = $this->askForEnableMultipleLanguage();
-        $activeModule = $this->askForActiveModule();
+        $isDev = $this->option('dev');
 
         $modelList = implode(',', $models);
 
@@ -37,18 +36,14 @@ class CreateModuleCommand extends Command
 
         $this->info("Module <options=bold>{$name}</options=bold> successfully created.\n");
 
-        if ($activeModule == ActiveModule::YES) {
-            $this->info("Module <options=bold>{$name}</options=bold> has been activated.\n");
-        }
-
         app(ModuleGenerator::class)
             ->setModuleName($name)
             ->setModelsList($models)
             ->setConsole($this)
-            ->setActiveModule($activeModule == ActiveModule::YES)
             ->setDesignPattern($designPattern)
             ->setEnableSeo($enableSeo == EnableSeo::YES)
             ->setEnableMultipleLanguage($enableMultipleLanguage == EnableMultipleLanguage::YES)
+            ->setIsDev($isDev)
             ->generate();
     }
 
@@ -139,22 +134,6 @@ class CreateModuleCommand extends Command
 
         return $this->choice(
             'Enable Multiple Language?',
-            $options,
-            $_default = $options[1],
-            $_maxAttempts = null,
-            $_allowMultipleSelections = false
-        );
-    }
-
-    protected function askForActiveModule()
-    {
-        $options = [
-            ActiveModule::NO,
-            ActiveModule::YES,
-        ];
-
-        return $this->choice(
-            'Activate the module after successful creation?',
             $options,
             $_default = $options[1],
             $_maxAttempts = null,

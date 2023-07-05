@@ -10,6 +10,8 @@ class ModuleGenerator
 {
     protected string $moduleName;
 
+    protected bool $isDev;
+
     protected array $models;
 
     protected Console $console;
@@ -57,8 +59,6 @@ class ModuleGenerator
         'lang/message-vi.stub'         => 'lang/vi/__MODEL_SLUG_NAME__.php',
     ];
 
-    protected bool $activeModule = true;
-
     protected bool $enableSeo = true;
 
     protected bool $enableMultipleLanguage = true;
@@ -86,13 +86,6 @@ class ModuleGenerator
         return $this;
     }
 
-    public function setActiveModule(string $activeModule): static
-    {
-        $this->activeModule = $activeModule;
-
-        return $this;
-    }
-
     public function setDesignPattern(string $designPattern): static
     {
         $this->designPattern = $designPattern;
@@ -114,6 +107,13 @@ class ModuleGenerator
         return $this;
     }
 
+    public function setIsDev($isDev): static
+    {
+        $this->isDev = $isDev;
+
+        return $this;
+    }
+
     public function generate(): void
     {
         if (File::isDirectory($this->getModulePath())) {
@@ -129,25 +129,6 @@ class ModuleGenerator
         $this->generateAdminRoutes();
         $this->generateWebRoutes();
         $this->generateMigration();
-
-        $this->handleActiveModule();
-    }
-
-    protected function handleActiveModule(): void
-    {
-        if ($this->activeModule) {
-            $filePath = base_path('modules.json');
-            if (File::exists($filePath)) {
-                $modulesContent = File::get($filePath);
-                $modulesJson = json_decode($modulesContent, true);
-            } else {
-                $modulesJson = [];
-            }
-
-            $modulesJson[$this->getModuleFolder()] = true;
-
-            File::put($filePath, json_encode($modulesJson, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
-        }
     }
 
     protected function generateFolders(): void
@@ -365,7 +346,11 @@ AdminMenu::addItem(__('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.model_name'), [
 
     protected function getModulePath(): string
     {
-        return base_path("modules".DIRECTORY_SEPARATOR.$this->getModuleFolder());
+        if ($this->isDev) {
+            return base_path("lib".DIRECTORY_SEPARATOR.'module-'.$this->getModuleFolder());
+        } else {
+            return base_path("modules".DIRECTORY_SEPARATOR.$this->getModuleFolder());
+        }
     }
 
     protected function getModuleFolder(): string
