@@ -1,5 +1,5 @@
 {
-    "name": "module/__MODULE_SLUG_NAME__",
+    "name": "modules/__MODULE_SLUG_NAME__",
     "description": "__MODULE_NAME__",
     "autoload": {
         "psr-4": {
