@@ -9,6 +9,7 @@ use Newnet\Module\Enums\DesignPattern;
 use Newnet\Module\Enums\EnableMultipleLanguage;
 use Newnet\Module\Enums\EnableSeo;
 use Newnet\Module\Generators\ModuleGenerator;
+use function Laravel\Prompts\text;
 
 class ModuleCreateCommand extends Command
 {
@@ -49,6 +50,18 @@ class ModuleCreateCommand extends Command
 
     protected function askForName()
     {
+//        $isDev = $this->option('dev');
+//        $dir = $isDev ? "lib" : "modules";
+//
+//        return text(
+//            label: 'Enter Module Name?',
+//            required: true,
+//            validate: fn (string $val) => match (true) {
+//                File::isDirectory(base_path($dir.DIRECTORY_SEPARATOR.Str::kebab($val))) => sprintf('Module "%s" already exists', $val),
+//                default => null
+//            }
+//        );
+
         if ($name = $this->argument('name')) {
             return $name;
         }

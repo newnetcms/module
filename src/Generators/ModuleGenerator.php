@@ -340,7 +340,7 @@ AdminMenu::addItem(__('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.model_name'), [
             $this->getModelVarName($modelName),
             $this->getModelKey($modelName),
             $this->getModelMenuKey($modelName),
-            $this->getModuleNamespace().'__'.$this->getModelKey($modelName).'s',
+            $this->getModuleNamespace().'__'.Str::plural($this->getModelKey($modelName)),
         ], $content);
     }
 
