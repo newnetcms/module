@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('meta_title', object_get($item, 'seometa.title') ?: $item->$item)
+@section('meta_title', object_get($item, 'seometa.title') ?: $item->name)
 
 @section('meta')
     @seometa(['item' => $item])
