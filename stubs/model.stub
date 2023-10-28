@@ -9,7 +9,7 @@ class __MODEL_CLASS_NAME__ extends Model
 {
     use TranslatableTrait;
 
-    protected $table = '__MODULE_NAMESPACE______MODEL_KEY__s';
+    protected $table = '__MODEL_TABLE__';
 
     protected $fillable = [
         'name',
