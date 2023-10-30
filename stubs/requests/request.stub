@@ -31,7 +31,7 @@ class __MODEL_CLASS_NAME__Request extends FormRequest
     public function attributes()
     {
         return [
-            'name' => __('__MODULE_NAMESPACE__::message.name'),
+            'name' => __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.name'),
         ];
     }
 }
