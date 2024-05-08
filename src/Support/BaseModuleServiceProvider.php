@@ -35,6 +35,7 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom($this->getModuleFilePath('database/migrations'));
         $this->loadTranslationsFrom($this->getModuleFilePath('lang'), $this->getModuleNamespace());
+        $this->loadJsonTranslationsFrom($this->getModuleFilePath('lang'));
         $this->loadViewsFrom($this->getModuleFilePath('resources/views'), $this->getModuleNamespace());
 
         $configFile = $this->getModuleNamespace().'.php';
