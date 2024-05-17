@@ -53,10 +53,10 @@
                     <thead>
                     <tr>
                         <th>{{ __('#') }}</th>
-                        <th>{{ __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.name') }}</th>
-                        <th>{{ __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.is_active') }}</th>
-                        <th>@translatableHeader</th>
-                        <th>{{ __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.created_at') }}</th>
+                        <th nowrap>{{ __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.name') }}</th>
+                        <th nowrap>{{ __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.is_active') }}</th>
+                        <th nowrap>@translatableHeader</th>
+                        <th nowrap>{{ __('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.created_at') }}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -76,7 +76,7 @@
                             </td>
                             <td>@translatableStatus(['editUrl' => route('__MODULE_NAMESPACE__.admin.__MODEL_SLUG_NAME__.edit', $item->id)])</td>
                             <td>{{ $item->created_at }}</td>
-                            <td class="text-right">
+                            <td nowrap class="text-right">
                                 @admincan('__MODULE_NAMESPACE__.admin.__MODEL_SLUG_NAME__.edit')
                                     <a href="{{ route('__MODULE_NAMESPACE__.admin.__MODEL_SLUG_NAME__.edit', $item->id) }}" class="btn btn-success-soft btn-sm mr-1">
                                         <i class="fas fa-pencil-alt"></i>
