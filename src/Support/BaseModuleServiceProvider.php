@@ -2,11 +2,14 @@
 
 namespace Newnet\Module\Support;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Newnet\AdminUi\Facades\AdminMenu;
+use Symfony\Component\Finder\Finder;
 
 abstract class BaseModuleServiceProvider extends ServiceProvider
 {
@@ -22,6 +25,8 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
 
     public function register()
     {
+        $this->registerHelpers();
+
         $configFile = $this->getModuleNamespace().'.php';
         $configFilePath = $this->getModuleFilePath("config/{$configFile}");
         if (File::exists($configFilePath)) {
@@ -119,5 +124,24 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
     protected function getModuleFilePath($path)
     {
         return $this->getModuleDir().DIRECTORY_SEPARATOR.$path;
+    }
+
+    protected function registerHelpers()
+    {
+        $paths = $this->getModuleDir().'/helpers';
+
+        $paths = array_unique(Arr::wrap($paths));
+
+        $paths = array_filter($paths, function ($path) {
+            return is_dir($path);
+        });
+
+        if (empty($paths)) {
+            return;
+        }
+
+        foreach (Finder::create()->in($paths)->files() as $file) {
+            require_once $file;
+        }
     }
 }
