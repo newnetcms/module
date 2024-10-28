@@ -5,6 +5,7 @@ namespace Newnet\Module;
 use Composer\Autoload\ClassLoader;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Newnet\Module\Console\Commands\MakeModelCommand;
 use Newnet\Module\Console\Commands\ModuleCreateCommand;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -18,7 +19,8 @@ class ModuleServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                ModuleCreateCommand::class
+                ModuleCreateCommand::class,
+                MakeModelCommand::class
             ]);
         }
     }

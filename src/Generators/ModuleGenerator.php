@@ -131,6 +131,17 @@ class ModuleGenerator
         $this->generateMigration();
     }
 
+    public function makeModel(): void
+    {
+        if (!File::isDirectory($this->getModulePath())) {
+            $this->console->error(sprintf('Module %s not exists', $this->moduleName));
+            return;
+        }
+
+        $this->generateModelFiles();
+        $this->generateMigration();
+    }
+
     protected function generateFolders(): void
     {
         foreach ($this->folders as $folder) {
