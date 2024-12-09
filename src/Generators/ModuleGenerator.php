@@ -358,7 +358,7 @@ AdminMenu::addItem(__('__MODULE_NAMESPACE__::__MODEL_SLUG_NAME__.model_name'), [
     protected function getModulePath(): string
     {
         if ($this->isDev) {
-            return base_path("lib".DIRECTORY_SEPARATOR.'module-'.$this->getModuleFolder());
+            return base_path("lib".DIRECTORY_SEPARATOR.$this->getModuleFolder());
         } else {
             return base_path("modules".DIRECTORY_SEPARATOR.$this->getModuleFolder());
         }
