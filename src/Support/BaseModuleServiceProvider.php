@@ -38,7 +38,8 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadMigrationsFrom($this->getModuleFilePath('database/migrations'));
+        $this->loadMigrations();
+
         $this->loadTranslationsFrom($this->getModuleFilePath('lang'), $this->getModuleNamespace());
         $this->loadJsonTranslationsFrom($this->getModuleFilePath('lang'));
         $this->loadViewsFrom($this->getModuleFilePath('resources/views'), $this->getModuleNamespace());
@@ -143,5 +144,10 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
         foreach (Finder::create()->in($paths)->files() as $file) {
             require_once $file;
         }
+    }
+
+    protected function loadMigrations()
+    {
+        $this->loadMigrationsFrom($this->getModuleFilePath('database/migrations'));
     }
 }
